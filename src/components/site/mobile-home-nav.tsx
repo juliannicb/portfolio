@@ -40,7 +40,7 @@ export function MobileHomeNav() {
         {projectsOpen && (
           <div className="mt-2">
             <Card className="p-2">
-              <a href="https://blocklotto-fun-frontend-dgbu.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded hover:bg-surface-secondary">Blocklotto.fun</a>
+              <a href="https://blocklotto-fun-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded hover:bg-surface-secondary">Blocklotto.fun</a>
               <a href="https://rwa-prototype-phi.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded hover:bg-surface-secondary">RWA Prototype</a>
               <a href="https://web3-game-indol.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded hover:bg-surface-secondary">Web3 Crypto Kart Game</a>
             </Card>

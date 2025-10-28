@@ -26,7 +26,7 @@ export default function ProjectsPage() {
             </Card>
           </a>
 
-          <a href="https://blocklotto-fun-frontend-dgbu.vercel.app/" target="_blank" rel="noopener noreferrer" className="block">
+          <a href="https://blocklotto-fun-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" className="block">
             <Card className="p-5 transition-colors hover:bg-surface-secondary">
               <div className="text-lg font-semibold">Blocklotto.fun</div>
               <p className="mt-2 text-sm text-muted">
