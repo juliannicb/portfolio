@@ -6,6 +6,8 @@ import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { Toaster } from "react-hot-toast";
 import MatrixRain from "@/components/background/matrix-rain";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], weight: ["400","500","700","800"] });
 const jbMono = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: ["400","600","700"] });
@@ -55,6 +57,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
           <Footer />
           <Toaster position="bottom-right" />
+          <Analytics />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>
