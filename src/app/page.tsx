@@ -4,6 +4,7 @@ import { Chip } from "@/components/ui/chip";
 import { Section } from "@/components/ui/section";
 import Image from "next/image";
 import CodeRainOverlay from "@/components/effects/code-rain-overlay";
+import { MobileHomeNav } from "@/components/site/mobile-home-nav";
 
 export default function Home() {
 
@@ -61,6 +62,8 @@ export default function Home() {
               />
               <CodeRainOverlay className="group-hover:opacity-80" />
             </div>
+            {/* Mobile-only quick access placed under profile */}
+            <MobileHomeNav />
           </div>
         </div>
       </Section>
