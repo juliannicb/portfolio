@@ -3,8 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Chip } from "@/components/ui/chip";
 import { Section } from "@/components/ui/section";
 import Image from "next/image";
-import CodeRainOverlay from "@/components/effects/code-rain-overlay";
-import { MobileHomeNav } from "@/components/site/mobile-home-nav";
+import { ProfileReveal } from "@/components/site/profile-reveal";
 
 export default function Home() {
 
@@ -51,19 +50,8 @@ export default function Home() {
             </div>
           </div>
           <div className="space-y-6">
-            <div className="group relative aspect-square w-full max-w-sm overflow-hidden rounded-2xl bg-gradient-to-br from-accent/20 to-accent-teal/20 backdrop-blur-sm border border-white/10">
-              <Image
-                src="/profile.png?v=2"
-                alt="Portrait"
-                fill
-                priority
-                unoptimized
-                className="object-cover opacity-80"
-              />
-              <CodeRainOverlay className="group-hover:opacity-80" />
-            </div>
-            {/* Mobile-only quick access placed under profile */}
-            <MobileHomeNav />
+            <ProfileReveal />
+            {/* Removed mobile-only quick access below profile */}
           </div>
         </div>
       </Section>

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Github, Linkedin, FileDown, Mail } from "lucide-react";
+import { Github, Linkedin, FileDown, Mail, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 // Deterministic PRNG to avoid SSR/CSR hydration mismatch for per-letter styles
@@ -55,153 +55,32 @@ const links = [
 
 export function Header() {
   const pathname = usePathname();
-  const [isTouch, setIsTouch] = useState(false);
-  const [projectsOpen, setProjectsOpen] = useState(false);
-  const [articlesOpen, setArticlesOpen] = useState(false);
-  const projectsRef = useRef<HTMLDivElement | null>(null);
-  const articlesRef = useRef<HTMLDivElement | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    // Detect touch/hover capability to decide tap behavior
-    const hoverNone = window.matchMedia && window.matchMedia("(hover: none)").matches;
-    const touchCapable = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    setIsTouch(hoverNone || touchCapable);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, []);
-
-  useEffect(() => {
-    if (!projectsOpen) return;
-    const onDocClick = (e: MouseEvent | TouchEvent) => {
-      const el = projectsRef.current;
-      if (!el) return;
-      if (e.target instanceof Node && !el.contains(e.target)) {
-        setProjectsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", onDocClick);
-    document.addEventListener("touchstart", onDocClick, { passive: true });
-    return () => {
-      document.removeEventListener("mousedown", onDocClick);
-      document.removeEventListener("touchstart", onDocClick);
-    };
-  }, [projectsOpen]);
-
-  useEffect(() => {
-    if (!articlesOpen) return;
-    const onDocClick = (e: MouseEvent | TouchEvent) => {
-      const el = articlesRef.current;
-      if (!el) return;
-      if (e.target instanceof Node && !el.contains(e.target)) {
-        setArticlesOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", onDocClick);
-    document.addEventListener("touchstart", onDocClick, { passive: true });
-    return () => {
-      document.removeEventListener("mousedown", onDocClick);
-      document.removeEventListener("touchstart", onDocClick);
-    };
-  }, [articlesOpen]);
   return (
     <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:glass">
       <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-10">
         <div className="flex h-20 items-center justify-between">
-          <div />
-          <nav className="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+          {/* Mobile hamburger */}
+          <button
+            type="button"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            className="md:hidden p-2 rounded-lg hover:bg-card ring-focus"
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+          <nav className="hidden md:flex flex-wrap items-center gap-3 text-xs sm:text-sm">
             {links.map((l) => {
               const isExternal = l.href.startsWith("http");
               const chars = [...l.label];
-              // For the "Projects" tab, show a dropdown with external sites
-              if (l.label === "Projects") {
-                return (
-                  <div key={l.href} className="relative group" ref={projectsRef}>
-                    <Link
-                      href={l.href}
-                      className={cn(
-                        "group rounded px-3 py-2 transition-colors ring-focus overflow-hidden",
-                        pathname === l.href && "bg-card"
-                      )}
-                      onClick={(e) => {
-                        if (isTouch) {
-                          e.preventDefault();
-                          setProjectsOpen((v) => !v);
-                          // Close other menu if open
-                          setArticlesOpen(false);
-                        }
-                      }}
-                      aria-haspopup="menu"
-                      aria-expanded={projectsOpen}
-                    >
-                      {chars.map((ch, i) => (
-                        <span
-                          key={`${l.label}-${i}`}
-                          className="nav-chaos-letter inline-block"
-                          style={letterVars(l.label, i)}
-                        >
-                          {ch}
-                        </span>
-                      ))}
-                    </Link>
-                    <div
-                      className={cn(
-                        "absolute left-0 top-full mt-2 min-w-[220px] rounded-lg border border-white/10 bg-card shadow-lg",
-                        // Show on hover (desktop) or when explicitly opened (mobile/touch)
-                        projectsOpen ? "block" : "hidden",
-                        "group-hover:block"
-                      )}
-                      role="menu"
-                    >
-                      <a href="https://blocklotto-fun-frontend-dgbu.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 hover:bg-surface-secondary">Blocklotto.fun</a>
-                      <a href="https://rwa-prototype-phi.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 hover:bg-surface-secondary">RWA Prototype</a>
-                      <a href="https://web3-game-indol.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 hover:bg-surface-secondary">Web3 Crypto Kart Game</a>
-                    </div>
-                  </div>
-                );
-              }
-              // For the "Articles" tab, show a dropdown with internal and external links
-              if (l.label === "Articles") {
-                return (
-                  <div key={l.href} className="relative group" ref={articlesRef}>
-                    <Link
-                      href={l.href}
-                      className={cn(
-                        "group rounded px-3 py-2 transition-colors ring-focus overflow-hidden",
-                        pathname === l.href && "bg-card"
-                      )}
-                      onClick={(e) => {
-                        if (isTouch) {
-                          e.preventDefault();
-                          setArticlesOpen((v) => !v);
-                          // Close other menu if open
-                          setProjectsOpen(false);
-                        }
-                      }}
-                      aria-haspopup="menu"
-                      aria-expanded={articlesOpen}
-                    >
-                      {chars.map((ch, i) => (
-                        <span
-                          key={`${l.label}-${i}`}
-                          className="nav-chaos-letter inline-block"
-                          style={letterVars(l.label, i)}
-                        >
-                          {ch}
-                        </span>
-                      ))}
-                    </Link>
-                    <div
-                      className={cn(
-                        "absolute left-0 top-full mt-2 min-w-[220px] rounded-lg border border-white/10 bg-card shadow-lg",
-                        articlesOpen ? "block" : "hidden",
-                        "group-hover:block"
-                      )}
-                      role="menu"
-                    >
-                      <a href="/writing" className="block px-3 py-2 hover:bg-surface-secondary">Writing Index</a>
-                      <a href="https://de.beincrypto.com/author/julian_nicacio/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 hover:bg-surface-secondary">BeInCrypto Articles</a>
-                    </div>
-                  </div>
-                );
-              }
               return (
                 <Link
                   key={l.href}
@@ -233,6 +112,40 @@ export function Header() {
             <a aria-label="Download CV" href="/cv.pdf" download className="p-2 rounded-lg hover:bg-card ring-focus"><FileDown size={18} /></a>
           </div>
         </div>
+        {/* Mobile menu panel */}
+        {mobileOpen && (
+          <div className="md:hidden">
+            {/* overlay */}
+            <div
+              className="fixed inset-0 z-50 bg-black/50"
+              onClick={() => setMobileOpen(false)}
+              aria-hidden
+            />
+            {/* menu */}
+            <div className="fixed z-50 top-16 left-4 right-4 rounded-xl border border-white/20 bg-background backdrop-blur-0 shadow-xl">
+              <div className="p-2">
+                {links.map((l) => {
+                  const isExternal = l.href.startsWith("http");
+                  return (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "block rounded px-4 py-3 text-sm hover:bg-surface-secondary",
+                        pathname === l.href && "bg-surface-secondary"
+                      )}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                    >
+                      {l.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
