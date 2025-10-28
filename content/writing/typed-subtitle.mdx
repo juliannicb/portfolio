@@ -1,0 +1,16 @@
+---
+title: "Typed once: motion patterns for first-load hero"
+slug: "typed-once-hero"
+date: "2024-10-02"
+tags: ["Frontend", "Motion"]
+summary: "Staggered reveals, typed-once subtitles, and graceful degradation."
+cover: "/globe.svg"
+---
+
+In this short note I cover how to orchestrate a hero animation that plays once: staggered text, a typed subtitle, and a long, slow gradient arc.
+
+Key ideas:
+
+- Respect `prefers-reduced-motion` and fall back to static UI.
+- Keep durations short for interactions, long for ambient.
+- Avoid layout shift: reserve space and animate transforms/opacity.

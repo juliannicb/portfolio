@@ -1,0 +1,39 @@
+---
+title: "DeFi Yield Aggregator"
+slug: "defi-aggregator"
+date: "2024-11-01"
+tags: ["DeFi", "EVM", "Security"]
+role: "Smart Contract Engineer"
+stack: ["Solidity", "Foundry", "TypeScript", "Next.js", "Ethers"]
+repo: "https://github.com/juliannicb"
+demo: "#"
+cover: "/window.svg"
+results:
+  - "Reduced gas by 24% across core strategies"
+  - "Deployed to L2 with auto-harvest bots"
+summary: "Composable vaults with strategy plugins and on-chain governance."
+---
+
+## Problem
+Users faced high gas costs and fragmented liquidity when chasing yield across protocols.
+
+## Approach
+- Strategy plugin interface for vaults
+- Batched harvest and auto-compounding
+- Risk scoring and circuit breakers
+
+```solidity
+// simplified snippet
+interface IStrategy {
+  function harvest() external returns (uint256 profit);
+}
+```
+
+<svg width="100%" height="120" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+  <path id="line" d="M 10 60 Q 200 10, 320 60 T 590 60" stroke="#38C4B6" stroke-width="3" fill="none" />
+</svg>
+
+## Result
+- TVL +1.8M in first quarter
+- Gas optimized strategies (-24%)
+- On-chain governance with timelock
