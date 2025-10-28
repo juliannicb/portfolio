@@ -87,7 +87,7 @@ export function Header() {
                     <div className="absolute left-0 top-full mt-2 hidden group-hover:block min-w-[220px] rounded-lg border border-white/10 bg-card shadow-lg">
                       <a href="https://blocklotto-fun-frontend-dgbu.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 hover:bg-surface-secondary">Blocklotto.fun</a>
                       <a href="https://rwa-prototype-phi.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 hover:bg-surface-secondary">RWA Prototype</a>
-                      <a href="https://vercel.com/julians-projects-7ab1d549/web3-game" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 hover:bg-surface-secondary">Web3 Crypto Kart Game</a>
+                      <a href="https://web3-game-indol.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 hover:bg-surface-secondary">Web3 Crypto Kart Game</a>
                     </div>
                   </div>
                 );

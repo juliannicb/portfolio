@@ -19,7 +19,7 @@ export default function ProjectsPage() {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
           <Card className="p-5">
             <div className="text-lg font-semibold">
-              <a href="https://vercel.com/julians-projects-7ab1d549/web3-game" target="_blank" rel="noopener noreferrer" className="hover:underline">Web3 Crypto Kart Game</a>
+              <a href="https://web3-game-indol.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:underline">Web3 Crypto Kart Game</a>
             </div>
             <p className="mt-2 text-sm text-muted">
               A minimal Web3 racing prototype with NFT karts/tracks, tournament entry in crypto, and an on-chain payout that splits rewards to winners and track owners. Frontend uses a canvas race animation and Web3-ready flows.
