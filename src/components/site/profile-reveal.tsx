@@ -45,7 +45,7 @@ export function ProfileReveal() {
 
       {/* Alternate image: digital appear on mobile, crisp crossfade on desktop hover */}
       <Image
-        src="/profile-alt.png"
+        src="/profile-alt.png?v=2"
         alt="Portrait alternate"
         fill
         priority
