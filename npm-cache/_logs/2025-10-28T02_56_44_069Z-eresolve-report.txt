@@ -1,0 +1,18 @@
+'Log files:
+/Users/juliannic/Downloads/Portfolio/portfolio/npm-cache/_logs/2025-10-28T02_56_44_069Z-debug-0.log
+
+# npm resolution error report
+
+While resolving: portfolio@0.1.0
+Found: next@16.0.0
+node_modules/next
+  next@"16.0.0" from the root project
+
+Could not resolve dependency:
+peer next@"^12 || ^13" from next-contentlayer@0.3.4
+node_modules/next-contentlayer
+  next-contentlayer@"*" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.
