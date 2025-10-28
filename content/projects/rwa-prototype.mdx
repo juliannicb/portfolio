@@ -1,0 +1,24 @@
+---
+title: "Tokenised Real‑World Assets (RWA) Prototype"
+slug: "rwa-prototype"
+date: "2025-10-27"
+tags: ["RWA", "ERC20", "Oracle", "Frontend"]
+summary: "Portfolio‑ready prototype for fractional ownership tokens with simulated oracle‑driven pricing and a simple trading UI."
+demo: "https://rwa-prototype-phi.vercel.app/"
+---
+
+## Overview
+
+Demonstrates fractional ownership via an ERC20 share token with simulated oracle updates and a trading UI to buy/sell demo shares.
+
+### Components
+
+- Smart contract: ERC20 share token with configurable oracle price updates (e.g., `contracts/RealWorldAssetToken.sol`).
+- Oracle adapter: Minimal, owner‑controlled adapter to push price ticks deterministically for demos (e.g., `contracts/OracleAdapter.sol`).
+- Frontend: React + Vite UI to visualise performance, simulate oracle ticks, and buy/sell demo shares.
+
+### Documentation Notes
+
+- Trust boundaries are explicit; updates are auditable.
+- Adapter design keeps demos deterministic while illustrating oracle flow.
+- Non‑custodial architecture and high‑level regulatory considerations for tokenised fractions.

@@ -1,0 +1,21 @@
+---
+title: "Blocklotto.fun"
+slug: "blocklotto-fun"
+date: "2025-10-27"
+tags: ["On-chain", "Lottery", "Commit-Reveal", "USDC"]
+summary: "Provably fair, on-chain lottery. Commit–reveal prevents front‑running; 70% of the pot pays winners. 5 USDC per entry, multiple entries allowed. Transparent claims and payout logic anchored in on-chain finality."
+demo: "https://blocklotto-fun-frontend-dgbu.vercel.app/"
+---
+
+## Overview
+
+Players choose a number from 0–999 and submit using a commit–reveal scheme to prevent front‑running. Rounds settle against on-chain finality and 70% of deposits pay out to winners.
+
+Entries cost **5 USDC** and multiple entries are supported.
+
+## Design Notes
+
+- Commit–reveal to secure user guesses
+- Deterministic payout split and secure claim flow
+- Transparent randomness via on-chain finality
+- Clear round lifecycle and stakes
