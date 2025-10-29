@@ -19,3 +19,21 @@ Entries cost **5 USDC** and multiple entries are supported.
 - Deterministic payout split and secure claim flow
 - Transparent randomness via on-chain finality
 - Clear round lifecycle and stakes
+
+## How It’s Built
+
+- Smart contracts in **Solidity** implement commit–reveal: users submit a commitment `hash(pick, nonce)`, then reveal `pick` + `nonce` for verification.
+- Settlement references **on-chain finality** to avoid manipulation, with a transparent payout split (70% to winners) and secure claim flow.
+- Frontend built with **Next.js** + **TypeScript**, integrating **Ethers.js** for wallet interactions and USDC payments.
+- Uses **Base Sepolia** for test rounds and **USDC** as entry token (5 USDC per pick). Multiple entries supported.
+- Serverless endpoints provide cached round and entries data for fast UI while reads remain verifiable on-chain.
+
+## Stack
+
+- Contracts: **Solidity** (commit–reveal, payout distribution)
+- Tooling: **Hardhat**/**Foundry**
+- Frontend: **Next.js** (App Router), **TypeScript**, **Tailwind CSS**
+- Web3: **Ethers.js**, wallet connectors
+- Chain: **Base Sepolia**
+- Token: **USDC**
+- Deployment: **Vercel**

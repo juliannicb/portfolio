@@ -22,3 +22,16 @@ Demonstrates fractional ownership via an ERC20 share token with simulated oracle
 - Trust boundaries are explicit; updates are auditable.
 - Adapter design keeps demos deterministic while illustrating oracle flow.
 - Non‑custodial architecture and high‑level regulatory considerations for tokenised fractions.
+
+## How It’s Built
+
+- **Solidity** ERC20 share token contract exposes supply and ownership; an owner‑controlled **Oracle Adapter** pushes deterministic price ticks for demos.
+- Frontend built with **React** + **Vite** and **TypeScript** to visualise price performance, simulate oracle ticks, and support demo buy/sell flows.
+- Clear trust boundaries and auditable updates are emphasised; adapter is intentionally simple to demonstrate oracle integration.
+
+## Stack
+
+- Contracts: **Solidity** (ERC20), Oracle Adapter
+- Tooling: **Hardhat**/**Foundry**
+- Frontend: **React** + **Vite**, **TypeScript**, **Tailwind CSS**
+- Deployment: **Vercel**

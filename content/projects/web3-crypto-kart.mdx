@@ -19,3 +19,18 @@ The frontend renders a canvas-based race animation and integrates wallet-ready f
 - Tournament entry in crypto
 - Simple, auditable payout mechanics
 - Canvas animation front-end
+
+## How It’s Built
+
+- **Solidity** smart contracts mint NFT karts/tracks and handle tournament entries and payouts to winners/track owners.
+- Frontend uses **React** + **Vite** with **TypeScript** and a custom **Canvas** race animation.
+- Wallet-ready flows via **Ethers.js**; UI integrates entry, race preview, and on-chain payout claim.
+- Deterministic race summaries recorded to keep payouts auditable for demos.
+
+## Stack
+
+- Contracts: **Solidity**
+- Tooling: **Hardhat**/**Foundry**
+- Frontend: **React** + **Vite**, **TypeScript**, **Tailwind CSS**
+- Web3: **Ethers.js**
+- Deployment: **Vercel**
