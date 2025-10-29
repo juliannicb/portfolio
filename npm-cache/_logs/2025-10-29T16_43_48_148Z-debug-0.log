@@ -7,8 +7,8 @@
 6 silly config load:file:/usr/local/etc/npmrc
 7 verbose title npm run dev
 8 verbose argv "run" "dev"
-9 verbose logfile logs-max:10 dir:/Users/juliannic/Downloads/Portfolio/portfolio/npm-cache/_logs/2025-10-28T04_38_39_118Z-
-10 verbose logfile /Users/juliannic/Downloads/Portfolio/portfolio/npm-cache/_logs/2025-10-28T04_38_39_118Z-debug-0.log
+9 verbose logfile logs-max:10 dir:/Users/juliannic/Downloads/Portfolio/portfolio/npm-cache/_logs/2025-10-29T16_43_48_148Z-
+10 verbose logfile /Users/juliannic/Downloads/Portfolio/portfolio/npm-cache/_logs/2025-10-29T16_43_48_148Z-debug-0.log
 11 silly logfile start cleaning logs, removing 1 files
 12 silly logfile done cleaning log files
 13 verbose cwd /Users/juliannic/Downloads/Portfolio/portfolio

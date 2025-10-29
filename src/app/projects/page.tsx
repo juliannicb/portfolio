@@ -60,6 +60,17 @@ export default function ProjectsPage() {
               <p className="mt-2 text-xs text-muted">Stack: Next.js, TypeScript, Tailwind CSS, Vercel, External inference API.</p>
             </Card>
           </a>
+
+          {/* No external link for this one */}
+          <Card className="p-5 transition-colors hover:bg-surface-secondary">
+            <div className="text-lg font-semibold">AI Newsroom Autopilot (n8n)</div>
+            <p className="mt-2 text-sm text-muted">
+              Pulls stories from RSS and X search, de‑dupes, scores relevance, generates 3‑language briefs (EN/PT/DE) + tweet + LinkedIn drafts, logs to Sheets/Notion, and alerts via Slack/Telegram with one‑click approve buttons.
+            </p>
+            <p className="mt-2 text-sm text-muted"><span className="font-semibold">Built with:</span> n8n workflow (Cron, RSS, HTTP, Code, OpenAI, Sheets, Notion, Slack/Telegram); de‑dupe via hash(title+url); multilingual brief + social drafts with length bounds; human‑in‑the‑loop approvals.
+            </p>
+            <p className="mt-2 text-xs text-muted">Stack: n8n, OpenAI (or compatible), Slack, Telegram, Google Sheets, Notion, RSS, X API (optional), NewsAPI (optional).</p>
+          </Card>
         </div>
       </Section>
     </div>

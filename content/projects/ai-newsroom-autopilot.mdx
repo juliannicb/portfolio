@@ -1,0 +1,62 @@
+---
+title: "AI Newsroom Autopilot (n8n)"
+slug: "ai-newsroom-autopilot"
+date: "2025-10-29"
+tags: ["AI", "Automation", "n8n", "Content"]
+summary: "Pulls stories from RSS and X search, de‑dupes, scores relevance, generates 3‑language briefs (EN/PT/DE) + tweet + LinkedIn blurb, logs to Sheets/Notion, and alerts via Slack/Telegram with one‑click approve buttons."
+demo: ""
+---
+
+## What it does
+
+Pulls stories from selected RSS feeds and X searches, de‑dupes, scores relevance, creates a 3‑language brief (EN/PT/DE) + tweet draft + LinkedIn blurb, logs everything to Sheets/Notion, and alerts you on Slack/Telegram with one‑click approve buttons.
+
+## Prereqs
+
+- n8n (self‑hosted or cloud)
+- API keys/creds: OpenAI (or your LLM), Slack/Telegram, Notion, Google Sheets
+- Optional: X API (for search), NewsAPI (backup)
+
+## Data model (Notion DB or Sheet columns)
+
+- `title` (text)
+- `source` (select)
+- `url` (url)
+- `pub_date` (date)
+- `topic` (multi‑select; e.g., BTC, ETH, regulation, exchanges)
+- `relevance_score` (number 0–100)
+- `summary_en`, `summary_pt`, `summary_de` (rich text)
+- `tweet_draft`, `linkedin_draft` (rich text)
+- `status` (select: queued, approved, posted)
+- `hash` (unique id for de‑dupe, e.g., sha256(title+url))
+
+## Workflow overview
+
+- Trigger: Cron (e.g., every 30 min)
+- Fetch:
+  - RSS Read (multiple feeds)
+  - Optional HTTP Request → X search (`query=bitcoin OR crypto -giveaway lang:en`)
+- Normalize + De‑dupe: Code node (create `hash`, drop seen items using Notion/Sheet lookup)
+- AI Relevance + Topic Tagging: OpenAI node → returns `{relevance_score, topics[]}`
+- AI Briefs: OpenAI node → 120–180 word news brief in EN/PT/DE + tweet (≤280) + LinkedIn (≤700)
+- Persistence:
+  - Google Sheets: append row
+  - Notion: create page
+- Alerts: Slack/Telegram message with buttons: Approve / Skip / Edit (webhook)
+- Human‑in‑the‑loop: If Approve, set Notion `status=approved`; optionally schedule Buffer/Hypefury/Zapier Webhooks for posting
+- Error branch: On failure, send Slack alert with payload and link to execution
+
+## How It’s Built
+
+- **n8n** orchestrates the workflow with Cron, RSS, HTTP Request, Code, OpenAI, Google Sheets, Notion, and Slack/Telegram nodes
+- De‑dupe uses a deterministic `hash(title+url)` and a lookup against Notion/Sheets to skip duplicates
+- Prompt templates produce consistent multilingual briefs and social drafts with length bounds
+- Human‑in‑the‑loop approvals drive state changes and optional scheduling via webhooks
+
+## Stack
+
+- Orchestration: **n8n**
+- LLM: **OpenAI** (or compatible)
+- Messaging: **Slack**, **Telegram**
+- Storage: **Google Sheets**, **Notion**
+- Sources: **RSS**, **X API** (optional), **NewsAPI** (optional)
