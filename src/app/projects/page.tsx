@@ -43,6 +43,15 @@ export default function ProjectsPage() {
               <p className="mt-2 text-sm text-muted">Notes: Explicit trust boundaries and auditable updates; lightweight adapter for deterministic demos; documentation outlines non‑custodial architecture and high‑level regulatory considerations for tokenized fractions.</p>
             </Card>
           </a>
+
+          <a href="https://ai-sound-moodboard.vercel.app/" target="_blank" rel="noopener noreferrer" className="block">
+            <Card className="p-5 transition-colors hover:bg-surface-secondary">
+              <div className="text-lg font-semibold">AI Sound Moodboard</div>
+              <p className="mt-2 text-sm text-muted">
+                Generate mood‑based audio from uploaded media and prompt parameters. Tune duration and texture density, optionally enable advanced prompt mixing, and preview the result. Built with Next.js + TypeScript and deployed on Vercel.
+              </p>
+            </Card>
+          </a>
         </div>
       </Section>
     </div>

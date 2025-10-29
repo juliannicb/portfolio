@@ -1,0 +1,29 @@
+---
+title: "AI Sound Moodboard"
+slug: "ai-sound-moodboard"
+date: "2025-10-28"
+tags: ["AI", "Audio", "Generative", "Next.js"]
+summary: "Generate mood‑based audio snippets from uploaded media and prompt parameters. Adjustable duration, texture density, and advanced prompt mixing for nuanced results."
+demo: "https://ai-sound-moodboard.vercel.app/"
+---
+
+## Overview
+
+An interactive moodboard for sound generation. Upload an image or video to set the vibe, tune parameters like **Duration** (e.g. 45s) and **Texture** (sparse → dense), optionally enable **Advanced prompt mix**, then generate an audio preview. The UI supports quick iteration and comparison across different parameter sets.
+
+## How It’s Built
+
+- Built as a modern single‑page experience with **Next.js** and **TypeScript**.
+- Client side handles drag‑and‑drop uploads and previews while a serverless API endpoint orchestrates generation requests.
+- Audio generation is proxied to an external inference service (e.g., Replicate/MusicGen‑style models), with job polling and status feedback in the UI.
+- Parameters (duration, texture, prompt mix) map to generation controls that produce consistent, reproducible outputs.
+- Results are cached client‑side for quick re‑listening while keeping compute on demand.
+
+## Stack
+
+- Framework: **Next.js** (App Router)
+- Language: **TypeScript**
+- Styling: **Tailwind CSS**
+- Deployment: **Vercel**
+- Generative audio: **External inference API** (MusicGen/Riffusion‑style)
+- UX: drag‑and‑drop uploads, parameter controls, preview player, job status

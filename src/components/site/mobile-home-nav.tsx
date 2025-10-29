@@ -43,6 +43,7 @@ export function MobileHomeNav() {
               <a href="https://blocklotto-fun-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded hover:bg-surface-secondary">Blocklotto.fun</a>
               <a href="https://rwa-prototype-phi.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded hover:bg-surface-secondary">RWA Prototype</a>
               <a href="https://web3-game-indol.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded hover:bg-surface-secondary">Web3 Crypto Kart Game</a>
+              <a href="https://ai-sound-moodboard.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded hover:bg-surface-secondary">AI Sound Moodboard</a>
             </Card>
           </div>
         )}
