@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { getAllProjects } from "@/lib/content";
 import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
-import { ProjectsGrid } from "../../components/projects-grid";
 
 export const metadata = { title: "Projects" };
 
@@ -14,10 +14,10 @@ export default function ProjectsPage() {
           Explore three featured prototypes: a Web3 racing game with NFT assets, a provably fair
           on-chain lottery using commit–reveal, and a tokenised real‑world assets demo with oracle‑driven pricing.
         </p>
-        <ProjectsGrid projects={projects} />
-
+        {/* Removed tag filter and auto-generated cards */}
+        
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
-          <a href="https://web3-game-indol.vercel.app/" target="_blank" rel="noopener noreferrer" className="block">
+          <Link href="/projects/web3-crypto-kart" className="block">
             <Card className="p-5 transition-colors hover:bg-surface-secondary">
               <div className="text-lg font-semibold">Web3 Crypto Kart Game</div>
               <p className="mt-2 text-sm text-muted">
@@ -26,9 +26,9 @@ export default function ProjectsPage() {
               <p className="mt-2 text-sm text-muted"><span className="font-semibold">Built with:</span> Solidity contracts for NFT karts/tracks and tournament payouts; React + Vite + TypeScript frontend with custom Canvas race animation; Ethers.js wallet flows.</p>
               <p className="mt-2 text-xs text-muted">Stack: Solidity, Hardhat/Foundry, React + Vite, TypeScript, Tailwind CSS, Ethers.js, Vercel.</p>
             </Card>
-          </a>
+          </Link>
 
-          <a href="https://blocklotto-fun-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" className="block">
+          <Link href="/projects/blocklotto-fun" className="block">
             <Card className="p-5 transition-colors hover:bg-surface-secondary">
               <div className="text-lg font-semibold">Blocklotto.fun</div>
               <p className="mt-2 text-sm text-muted">
@@ -37,9 +37,9 @@ export default function ProjectsPage() {
               <p className="mt-2 text-sm text-muted"><span className="font-semibold">Built with:</span> Solidity commit–reveal contracts, Next.js + TypeScript frontend, Ethers.js wallet integration; Base Sepolia test rounds; USDC for entry.</p>
               <p className="mt-2 text-xs text-muted">Stack: Solidity, Hardhat/Foundry, Next.js, TypeScript, Tailwind CSS, Ethers.js, Base Sepolia, USDC, Vercel.</p>
             </Card>
-          </a>
+          </Link>
 
-          <a href="https://rwa-prototype-phi.vercel.app/" target="_blank" rel="noopener noreferrer" className="block">
+          <Link href="/projects/rwa-prototype" className="block">
             <Card className="p-5 transition-colors hover:bg-surface-secondary">
               <div className="text-lg font-semibold">Tokenised Real‑World Assets (RWA) Prototype</div>
               <p className="mt-2 text-sm text-muted">Fractional ownership ERC20 with simulated oracle-driven pricing and a simple trading UI.</p>
@@ -48,9 +48,9 @@ export default function ProjectsPage() {
               <p className="mt-2 text-sm text-muted"><span className="font-semibold">Built with:</span> Solidity ERC20 + Oracle Adapter; React + Vite + TypeScript frontend to visualise performance, simulate price ticks, and support demo buy/sell flows.</p>
               <p className="mt-2 text-xs text-muted">Stack: Solidity, Hardhat/Foundry, React + Vite, TypeScript, Tailwind CSS, Vercel.</p>
             </Card>
-          </a>
+          </Link>
 
-          <a href="https://ai-sound-moodboard.vercel.app/" target="_blank" rel="noopener noreferrer" className="block">
+          <Link href="/projects/ai-sound-moodboard" className="block">
             <Card className="p-5 transition-colors hover:bg-surface-secondary">
               <div className="text-lg font-semibold">AI Sound Moodboard</div>
               <p className="mt-2 text-sm text-muted">
@@ -59,18 +59,19 @@ export default function ProjectsPage() {
               <p className="mt-2 text-sm text-muted"><span className="font-semibold">Built with:</span> Next.js + TypeScript frontend with Tailwind CSS; serverless API orchestrates audio generation via external inference; drag‑and‑drop uploads, parameter controls, and preview player.</p>
               <p className="mt-2 text-xs text-muted">Stack: Next.js, TypeScript, Tailwind CSS, Vercel, External inference API.</p>
             </Card>
-          </a>
+          </Link>
 
-          {/* No external link for this one */}
-          <Card className="p-5 transition-colors hover:bg-surface-secondary">
-            <div className="text-lg font-semibold">AI Newsroom Autopilot (n8n)</div>
-            <p className="mt-2 text-sm text-muted">
-              Pulls stories from RSS and X search, de‑dupes, scores relevance, generates 3‑language briefs (EN/PT/DE) + tweet + LinkedIn drafts, logs to Sheets/Notion, and alerts via Slack/Telegram with one‑click approve buttons.
-            </p>
-            <p className="mt-2 text-sm text-muted"><span className="font-semibold">Built with:</span> n8n workflow (Cron, RSS, HTTP, Code, OpenAI, Sheets, Notion, Slack/Telegram); de‑dupe via hash(title+url); multilingual brief + social drafts with length bounds; human‑in‑the‑loop approvals.
-            </p>
-            <p className="mt-2 text-xs text-muted">Stack: n8n, OpenAI (or compatible), Slack, Telegram, Google Sheets, Notion, RSS, X API (optional), NewsAPI (optional).</p>
-          </Card>
+          <Link href="/projects/ai-newsroom-autopilot" className="block">
+            <Card className="p-5 transition-colors hover:bg-surface-secondary">
+              <div className="text-lg font-semibold">AI Newsroom Autopilot (n8n)</div>
+              <p className="mt-2 text-sm text-muted">
+                Pulls stories from RSS and X search, de‑dupes, scores relevance, generates 3‑language briefs (EN/PT/DE) + tweet + LinkedIn drafts, logs to Sheets/Notion, and alerts via Slack/Telegram with one‑click approve buttons.
+              </p>
+              <p className="mt-2 text-sm text-muted"><span className="font-semibold">Built with:</span> n8n workflow (Cron, RSS, HTTP, Code, OpenAI, Sheets, Notion, Slack/Telegram); de‑dupe via hash(title+url); multilingual brief + social drafts with length bounds; human‑in‑the-loop approvals.
+              </p>
+              <p className="mt-2 text-xs text-muted">Stack: n8n, OpenAI (or compatible), Slack, Telegram, Google Sheets, Notion, RSS, X API (optional), NewsAPI (optional).</p>
+            </Card>
+          </Link>
         </div>
       </Section>
     </div>

@@ -51,7 +51,7 @@ export default function CV() {
             <div>
               <div className="flex justify-between items-start mb-2">
                 <div>
-                  <h3 className="text-lg font-semibold">Senior Blockchain Engineer</h3>
+                  <h3 className="text-lg font-semibold">Team Leader</h3>
                   <p className="text-text-secondary">BeInCrypto</p>
                 </div>
                 <span className="text-sm text-text-secondary">2022 - Present</span>
@@ -146,7 +146,7 @@ export default function CV() {
           <div className="flex gap-6">
             <div>
               <span className="font-semibold">German:</span>
-              <span className="text-text-secondary ml-2">Native</span>
+              <span className="text-text-secondary ml-2">Fluent</span>
             </div>
             <div>
               <span className="font-semibold">English:</span>
@@ -154,7 +154,7 @@ export default function CV() {
             </div>
             <div>
               <span className="font-semibold">Portuguese:</span>
-              <span className="text-text-secondary ml-2">Conversational</span>
+              <span className="text-text-secondary ml-2">Fluent</span>
             </div>
           </div>
         </section>

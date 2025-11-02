@@ -21,11 +21,11 @@ export default function Home() {
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div>
-            <div className="text-sm text-muted">hello!</div>
-            <h1 className="mt-2 text-4xl font-extrabold">I’m Julian</h1>
-            <p className="mt-2 text-lg text-muted">
-              blockchain & smart contract engineer
+            <p className="text-4xl text-white">
+              Blockchain & Smart Contract Engineer
             </p>
+            <div className="mt-2 text-sm text-muted">hello!</div>
+            <h1 className="mt-2 text-lg font-normal text-muted">I’m Julian.</h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
               I build secure, scalable systems at the intersection of blockchain, AI automation, and usable frontend.
             </p>
@@ -33,21 +33,17 @@ export default function Home() {
               <a href="/cv.pdf" download>
                 <Button>Download CV</Button>
               </a>
+              <Link href="/projects">
+                <Button>Projects</Button>
+              </Link>
               <a href="https://github.com/juliannicb" target="_blank" rel="noreferrer">
                 <Button variant="ghost">GitHub</Button>
               </a>
               <a href="https://linkedin.com/in/juliannic" target="_blank" rel="noreferrer">
                 <Button variant="ghost">LinkedIn</Button>
               </a>
-              <Link href="/contact">
-                <Button variant="ghost">Contact</Button>
-              </Link>
             </div>
-            <div className="mt-8 flex flex-wrap gap-2">
-              {["EVM","L2","DeFi","NFTs","zk","AI agents","Security"].map((t) => (
-                <Chip key={t}>{t}</Chip>
-              ))}
-            </div>
+            {/* Tags removed per request */}
           </div>
           <div className="space-y-6">
             <ProfileReveal />

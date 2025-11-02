@@ -43,7 +43,7 @@ export function ProfileReveal() {
         className="object-cover opacity-80 z-0"
       />
 
-      {/* Alternate image: digital appear on mobile, crisp crossfade on desktop hover */}
+      {/* Alternate image: digital appear on mobile, original glitch-on-enter on desktop hover */}
       <Image
         src="/profile-alt.png?v=2"
         alt="Portrait alternate"

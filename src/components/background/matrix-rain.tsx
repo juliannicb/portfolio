@@ -36,7 +36,7 @@ export function MatrixRain() {
     const backgroundFade = 0.08; // original trail fade strength
 
     let raf = 0;
-    const render = () => {
+    const renderFrame = () => {
       // translucent background fill for trails
       ctx.fillStyle = `rgba(0, 0, 0, ${backgroundFade})`;
       ctx.fillRect(0, 0, width, height);
@@ -67,14 +67,36 @@ export function MatrixRain() {
         }
       }
 
-      raf = window.requestAnimationFrame(render);
+    };
+
+    // Throttle loop on desktop to reduce jank during scroll
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const targetFps = 20;
+    const frameInterval = 1000 / targetFps;
+    let lastTime = 0;
+    let paused = false;
+
+    const loop = (time: number) => {
+      if (paused) {
+        raf = requestAnimationFrame(loop);
+        return;
+      }
+      if (!lastTime) lastTime = time;
+      const delta = time - lastTime;
+      if (delta >= frameInterval) {
+        lastTime = time - (delta % frameInterval);
+        renderFrame();
+      }
+      raf = requestAnimationFrame(loop);
     };
 
     const onVisibility = () => {
       if (document.hidden) {
         if (raf) cancelAnimationFrame(raf);
+        paused = true;
       } else {
-        raf = requestAnimationFrame(render);
+        paused = false;
+        raf = requestAnimationFrame(loop);
       }
     };
 
@@ -87,14 +109,14 @@ export function MatrixRain() {
       resize();
     };
 
-    window.addEventListener("resize", onResize);
-    document.addEventListener("visibilitychange", onVisibility);
-    raf = requestAnimationFrame(render);
+    window.addEventListener("resize", onResize, { passive: true });
+    document.addEventListener("visibilitychange", onVisibility, { passive: true });
+    raf = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("resize", onResize);
-      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("resize", onResize as any);
+      document.removeEventListener("visibilitychange", onVisibility as any);
     };
   }, []);
 

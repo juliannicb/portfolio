@@ -25,7 +25,7 @@ export type PostFrontmatter = {
   cover?: string;
 };
 
-const contentDir = path.join(process.cwd(), "portfolio", "content");
+const contentDir = path.join(process.cwd(), "content");
 
 export function getAllProjects(): ProjectFrontmatter[] {
   const dir = path.join(contentDir, "projects");
