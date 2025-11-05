@@ -18,7 +18,7 @@ export default function Home() {
       <style>{`@keyframes spin { to { transform: rotate(360deg);} }`}</style>
 
       {/* Hero */}
-      <Section>
+      <Section className="mb-4 md:mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div>
             <p className="text-4xl text-white">
@@ -29,23 +29,23 @@ export default function Home() {
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
               I build secure, scalable systems at the intersection of blockchain, AI automation, and usable frontend.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex gap-2 flex-nowrap overflow-x-auto md:flex-wrap md:overflow-visible">
               <a href="/cv.pdf" download>
-                <Button>Download CV</Button>
+                <Button className="text-xs px-3 py-1.5 md:text-sm md:px-4 md:py-2">Download CV</Button>
               </a>
               <Link href="/projects">
-                <Button>Projects</Button>
+                <Button className="text-xs px-3 py-1.5 md:text-sm md:px-4 md:py-2">Projects</Button>
               </Link>
               <a href="https://github.com/juliannicb" target="_blank" rel="noreferrer">
-                <Button variant="ghost">GitHub</Button>
+                <Button variant="ghost" className="text-xs px-3 py-1.5 md:text-sm md:px-4 md:py-2">GitHub</Button>
               </a>
               <a href="https://linkedin.com/in/juliannic" target="_blank" rel="noreferrer">
-                <Button variant="ghost">LinkedIn</Button>
+                <Button variant="ghost" className="text-xs px-3 py-1.5 md:text-sm md:px-4 md:py-2">LinkedIn</Button>
               </a>
             </div>
             {/* Tags removed per request */}
           </div>
-          <div className="space-y-6">
+          <div className="space-y-1 md:space-y-6">
             <ProfileReveal />
             {/* Removed mobile-only quick access below profile */}
           </div>

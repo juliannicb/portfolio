@@ -27,10 +27,18 @@ export default function ProjectCaseStudy({ params }: Props) {
         {slug === "web3-crypto-kart" ? (
           <>
             <div className="rounded-xl border border-white/10 bg-surface-secondary p-6">
-              <blockquote className="text-xl">“Own the track. Earn the prize. Race the chain.”</blockquote>
+              <blockquote className="text-xl">Own the track. Earn the prize. Race the chain.</blockquote>
               <p className="mt-3">
-                A Web3-native racing prototype where every kart and track is a tradable NFT. Players join crypto-backed tournaments, blaze through a live canvas-rendered race, and claim automated on-chain payouts that split between winners and track owners. It’s not just a game — it’s a decentralized motorsport economy in motion.
+                A Web3-native racing prototype where every kart and track is a tradable NFT. Players join crypto-backed tournaments, race through live canvas-animated tracks, and claim automatic on-chain payouts that split between winners and track owners — a decentralized motorsport economy in motion.
               </p>
+
+              <h3 className="mt-6">How it was built</h3>
+              <p>
+                Smart contracts in Solidity manage NFT karts, track ownership, and prize distribution. The React + Vite + TypeScript frontend renders real-time race visuals with a custom Canvas engine and connects via Ethers.js for wallet flows and signature verification.
+              </p>
+
+              <p className="mt-4 text-sm text-muted"><span className="font-semibold">Stack:</span> Solidity, Hardhat/Foundry, React, Vite, TypeScript, Tailwind CSS, Ethers.js, Vercel</p>
+
               <div className="mt-6">
                 <a
                   href={ctaHref}
@@ -46,10 +54,18 @@ export default function ProjectCaseStudy({ params }: Props) {
         ) : slug === "blocklotto-fun" ? (
           <>
             <div className="rounded-xl border border-white/10 bg-surface-secondary p-6">
-              <blockquote className="text-xl">“The lottery that can’t be rigged.”</blockquote>
+              <blockquote className="text-xl">The lottery that can’t be rigged.</blockquote>
               <p className="mt-3">
-                A fully transparent, on-chain lottery where your luck meets provable fairness. Players pick a number (0–999), lock in their guess via commit–reveal, and let blockchain randomness decide their fate. Winners take 70% of the pot — no middlemen, no manipulation, just math.
+                A provably fair, on-chain lottery where every guess (0–999) is sealed using commit–reveal cryptography. When the reveal phase ends, randomness is resolved transparently, and 70% of the pot pays out to winners — no middlemen, no manipulation, just math.
               </p>
+
+              <h3 className="mt-6">How it was built</h3>
+              <p>
+                A Solidity commit–reveal contract ensures verifiable fairness and prevents front‑running. The Next.js + TypeScript frontend integrates Ethers.js for wallet interaction, while Base Sepolia handles test‑round execution with USDC entries.
+              </p>
+
+              <p className="mt-4 text-sm text-muted"><span className="font-semibold">Stack:</span> Solidity, Hardhat/Foundry, Next.js, TypeScript, Tailwind CSS, Ethers.js, Base Sepolia, USDC, Vercel</p>
+
               <div className="mt-6">
                 <a
                   href={ctaHref}
@@ -65,10 +81,18 @@ export default function ProjectCaseStudy({ params }: Props) {
         ) : slug === "rwa-prototype" ? (
           <>
             <div className="rounded-xl border border-white/10 bg-surface-secondary p-6">
-              <blockquote className="text-xl">“Fractional ownership meets blockchain clarity.”</blockquote>
+              <blockquote className="text-xl">Fractional ownership meets blockchain clarity.</blockquote>
               <p className="mt-3">
-                A sleek RWA demo showing how physical assets can live on-chain. Users buy fractions of a tokenized asset, watch live oracle-driven price updates, and trade through a simple, transparent UI. It’s a glimpse into how blockchain turns real-world value into digital opportunity.
+                A lightweight RWA demo showing how tangible assets can be fractionalized into ERC‑20 tokens with live oracle‑based pricing. Users can buy fractions, watch price ticks update in real time, and trade through a clean, transparent interface.
               </p>
+
+              <h3 className="mt-6">How it was built</h3>
+              <p>
+                The backend consists of Solidity ERC‑20 and Oracle Adapter contracts, simulating price feeds and asset ownership. The React + Vite + TypeScript frontend visualizes price dynamics, executes mock trades, and maintains audit‑ready transparency across all updates.
+              </p>
+
+              <p className="mt-4 text-sm text-muted"><span className="font-semibold">Stack:</span> Solidity, Hardhat/Foundry, React, Vite, TypeScript, Tailwind CSS, Vercel</p>
+
               <div className="mt-6">
                 <a
                   href={ctaHref}
@@ -84,10 +108,18 @@ export default function ProjectCaseStudy({ params }: Props) {
         ) : slug === "ai-sound-moodboard" ? (
           <>
             <div className="rounded-xl border border-white/10 bg-surface-secondary p-6">
-              <blockquote className="text-xl">“Sound design meets AI intuition.”</blockquote>
+              <blockquote className="text-xl">Sound design meets AI intuition.</blockquote>
               <p className="mt-3">
-                Upload a photo or clip, set the vibe, and let AI compose an audio mood to match. Choose duration, texture density, and advanced prompt mixing — then preview your personal sound.
+                Upload a photo or video clip, describe the vibe, and let AI compose a matching soundscape. Fine‑tune tone, duration, and texture density, experiment with prompt mixing, and preview your personalized result in‑browser.
               </p>
+
+              <h3 className="mt-6">How it was built</h3>
+              <p>
+                Built with Next.js + TypeScript and styled with Tailwind CSS, it uses a serverless API to orchestrate external audio‑generation inference. Includes drag‑and‑drop uploads, parameter controls, and a custom web audio preview player.
+              </p>
+
+              <p className="mt-4 text-sm text-muted"><span className="font-semibold">Stack:</span> Next.js, TypeScript, Tailwind CSS, Vercel, External Inference API, Python, PyTorch</p>
+
               <div className="mt-6">
                 <a
                   href={ctaHref}
@@ -103,10 +135,17 @@ export default function ProjectCaseStudy({ params }: Props) {
         ) : slug === "ai-newsroom-autopilot" ? (
           <>
             <div className="rounded-xl border border-white/10 bg-surface-secondary p-6">
-              <blockquote className="text-xl">“The newsroom that never sleeps.”</blockquote>
+              <blockquote className="text-xl">The newsroom that never sleeps.</blockquote>
               <p className="mt-3">
-                An automation powerhouse that turns crypto news chaos into ready-to-publish intelligence. It scrapes RSS + X feeds, removes duplicates, scores relevance, then writes multilingual briefs (EN/PT/DE) and drafts posts for X and LinkedIn — all auto-logged to Sheets/Notion and pinged to Slack/Telegram for approval.
+                An autonomous news engine that filters signal from noise. It scrapes RSS and X feeds, removes duplicates, ranks relevance, and writes multilingual briefs (EN / PT / DE) plus social posts — all logged to Sheets + Notion and sent to Slack / Telegram for instant approval.
               </p>
+
+              <h3 className="mt-6">How it was built</h3>
+              <p>
+                Created entirely in n8n, this workflow combines Cron, RSS, HTTP, OpenAI, Sheets, Notion, Slack, and Telegram nodes. A custom hashing script de‑dupes stories by title + URL, while AI modules generate concise briefs and social copy. Approvals are human‑verified through interactive chat buttons.
+              </p>
+
+              <p className="mt-4 text-sm text-muted"><span className="font-semibold">Stack:</span> n8n, OpenAI (or compatible LLM), Slack, Telegram, Google Sheets, Notion, RSS, X API (optional), NewsAPI (optional)</p>
             </div>
           </>
         ) : (

@@ -5,13 +5,15 @@ export function Section({
   title,
   eyebrow,
   children,
+  className = "mb-16",
 }: {
   title?: string;
   eyebrow?: string;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <section className="mb-16">
+    <section className={className}>
       {(title || eyebrow) && (
         <div className="mb-6">
           {eyebrow && <div className="text-xs uppercase tracking-wider text-muted">{eyebrow}</div>}

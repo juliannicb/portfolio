@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Background visual layer */}
           <MatrixRain />
           <Header />
-          <main id="main" className="mx-auto max-w-6xl px-6 sm:px-8 md:px-10 py-10">
+          <main id="main" className="mx-auto max-w-6xl px-6 sm:px-8 md:px-10 pt-10 pb-1 md:py-10">
             {children}
           </main>
           <Footer />

@@ -11,7 +11,7 @@ export function ProfileReveal() {
     const touchCapable = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     setIsMobile(hoverNone || touchCapable);
 
-    const threshold = 400; // px of scroll to fully materialize (slower, more scroll)
+    const threshold = 220; // px of scroll to fully materialize (faster reveal on mobile)
     const onScroll = () => {
       const y = window.scrollY || window.pageYOffset || 0;
       const p = Math.max(0, Math.min(1, y / threshold));
