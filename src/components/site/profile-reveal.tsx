@@ -52,20 +52,34 @@ export function ProfileReveal() {
         unoptimized
         className={
           `object-cover absolute inset-0 opacity-0 scale-95 transition-transform transition-opacity duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 z-10 [will-change:transform,filter] ${
-            isMobile ? "" : "motion-safe:group-hover:animate-[glitch_140ms_ease-out] motion-reduce:group-hover:animate-none"
+            isMobile ? "" : "motion-safe:group-hover:animate-[matrixReveal_3420ms_ease-out_forwards] motion-reduce:group-hover:animate-none"
           }`
         }
         style={{
           opacity,
           transform: scale ? `scale(${scale})` : undefined,
           imageRendering: pixelated ? ("pixelated" as any) : "auto",
-          clipPath: revealPct !== undefined ? `inset(${100 - revealPct}% 0 0 0)` : undefined,
+          clipPath: revealPct !== undefined ? `inset(${100 - revealPct}% 0 0 0)` : (isMobile ? undefined : `inset(0 0 100% 0)`),
           filter:
             isMobile && revealPct !== undefined
               ? `contrast(${0.9 + 0.1 * (p ?? 0)}) saturate(${0.95 + 0.05 * (p ?? 0)})`
               : "none",
         }}
       />
+
+      {/* Desktop-only: subtle Matrix rain overlay on hover */}
+      {!isMobile && (
+        <div
+          className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100"
+          style={{
+            mixBlendMode: "overlay",
+            backgroundImage:
+              "repeating-linear-gradient(to bottom, rgba(56,196,182,0.25) 0px, rgba(56,196,182,0.25) 2px, transparent 2px, transparent 6px)",
+            backgroundSize: "100% 8px",
+            animation: "matrixRain 3420ms linear",
+          }}
+        />
+      )}
 
       {/* Scanline overlay fades out as progress increases (mobile only) */}
       {isMobile && (
@@ -79,39 +93,15 @@ export function ProfileReveal() {
           }}
         />
       )}
-      {/* Desktop-only: glitch keyframes for hover-in */}
+      {/* Desktop-only: Matrix-style reveal keyframes on hover */}
       <style>{`
-        @keyframes glitch {
-          0% {
-            transform: translate(0, 0) scale(0.98);
-            filter: contrast(0.95) saturate(0.92);
-          }
-          12% {
-            transform: translate(2px, -2px) skewX(-6deg) scale(1.02);
-            filter: contrast(1.05) saturate(1.04);
-          }
-          24% {
-            transform: translate(-2px, 2px) skewX(5deg) scale(0.99);
-          }
-          36% {
-            transform: translate(1px, -1px) skewY(4deg) scale(1.01);
-          }
-          48% {
-            transform: translate(-1px, 1px) skewY(-3deg) scale(1.00);
-          }
-          60% {
-            transform: translate(2px, 0) scale(1.02);
-          }
-          72% {
-            transform: translate(-2px, 0) scale(0.99);
-          }
-          84% {
-            transform: translate(0, 1px) scale(1.01);
-          }
-          100% {
-            transform: translate(0, 0) scale(1.0);
-            filter: none;
-          }
+        @keyframes matrixReveal {
+          0% { clip-path: inset(0 0 100% 0); }
+          100% { clip-path: inset(0 0 0 0); }
+        }
+        @keyframes matrixRain {
+          0% { background-position-y: 0%; }
+          100% { background-position-y: -120%; }
         }
       `}</style>
     </div>
