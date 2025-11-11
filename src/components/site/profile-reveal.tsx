@@ -52,7 +52,7 @@ export function ProfileReveal() {
         unoptimized
         className={
           `object-cover absolute inset-0 opacity-0 scale-95 transition-transform transition-opacity duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 z-10 [will-change:transform,filter] ${
-            isMobile ? "" : "motion-safe:group-hover:animate-[matrixReveal_3420ms_ease-out_forwards] motion-reduce:group-hover:animate-none"
+            isMobile ? "" : "motion-safe:group-hover:animate-[matrixReveal_1140ms_ease-out_forwards] motion-reduce:group-hover:animate-none"
           }`
         }
         style={{
@@ -76,7 +76,7 @@ export function ProfileReveal() {
             backgroundImage:
               "repeating-linear-gradient(to bottom, rgba(56,196,182,0.25) 0px, rgba(56,196,182,0.25) 2px, transparent 2px, transparent 6px)",
             backgroundSize: "100% 8px",
-            animation: "matrixRain 3420ms linear",
+            animation: "matrixRain 1140ms linear",
           }}
         />
       )}
