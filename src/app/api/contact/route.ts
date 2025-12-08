@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { Resend } from 'resend';
 
 // Validation schema
 const contactSchema = z.object({
@@ -49,25 +50,55 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
 
-    // In a real application, you would:
-    // 1. Send email using a service like SendGrid, Resend, or AWS SES
-    // 2. Store the message in a database
-    // 3. Send notifications to your preferred channels
+    // Attempt to send email via Resend
+    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+    if (!RESEND_API_KEY) {
+      console.warn('RESEND_API_KEY is not set. Unable to send email.');
+      return NextResponse.json(
+        { error: 'Email service not configured. Please try again later.' },
+        { status: 500 }
+      );
+    }
 
-    // For now, we'll just log the message and return success
-    console.log('Contact form submission:', {
-      ...validatedData,
-      timestamp: new Date().toISOString(),
-      ip,
+    const resend = new Resend(RESEND_API_KEY);
+    const toAddress = 'jngbrandalise@live.com';
+
+    const subject = `New contact: ${validatedData.subject}`;
+    const html = `
+      <div style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;">
+        <h2>New contact form submission</h2>
+        <p><strong>Name:</strong> ${validatedData.name}</p>
+        <p><strong>Email:</strong> ${validatedData.email}</p>
+        <p><strong>Subject:</strong> ${validatedData.subject}</p>
+        <p><strong>Message:</strong></p>
+        <pre style="white-space: pre-wrap; font-family: inherit;">${validatedData.message}</pre>
+        <hr />
+        <p style="color:#666"><small>IP: ${ip}</small></p>
+      </div>
+    `;
+
+    const { data, error } = await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>',
+      to: [toAddress],
+      subject,
+      html,
+      replyTo: validatedData.email,
     });
 
-    // Simulate email sending delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    if (error) {
+      console.error('Resend email error:', error);
+      return NextResponse.json(
+        { error: 'Failed to send email. Please try again later.' },
+        { status: 502 }
+      );
+    }
+
+    console.log('Contact form submission sent via Resend:', { id: data?.id, ip });
 
     return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Thank you for your message! I\'ll get back to you soon.' 
+      {
+        success: true,
+        message: "Thank you for your message! I've sent it to my inbox.",
       },
       { status: 200 }
     );

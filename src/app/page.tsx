@@ -29,7 +29,10 @@ export default function Home() {
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
               I build secure, scalable systems at the intersection of blockchain, AI automation, and usable frontend.
             </p>
-            <div className="mt-6 flex gap-2 flex-nowrap overflow-x-auto md:flex-wrap md:overflow-visible">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link href="/services">
+                <Button className="text-xs px-3 py-1.5 md:text-sm md:px-4 md:py-2">Services</Button>
+              </Link>
               <a href="/cv.pdf" download>
                 <Button className="text-xs px-3 py-1.5 md:text-sm md:px-4 md:py-2">Download CV</Button>
               </a>

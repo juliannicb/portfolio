@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Section } from '@/components/ui/section';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -9,6 +10,8 @@ import { toast } from 'react-hot-toast';
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const searchParams = useSearchParams();
+  const defaultSubject = searchParams.get('subject') ?? '';
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,6 +91,7 @@ export default function Contact() {
                     name="subject"
                     className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
                     placeholder="Project inquiry, collaboration, etc."
+                    defaultValue={defaultSubject}
                   />
                 </div>
                 <div>

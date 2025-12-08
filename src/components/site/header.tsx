@@ -47,6 +47,7 @@ function letterVars(label: string, index: number): React.CSSProperties {
 const links = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
+  { href: "/services", label: "Services" },
   { href: "https://de.beincrypto.com/author/julian_nicacio/", label: "Articles" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
