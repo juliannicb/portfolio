@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Section } from '@/components/ui/section';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card';
 import { Mail, Github, Linkedin, Clock } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
-export default function Contact() {
+function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const searchParams = useSearchParams();
   const defaultSubject = searchParams.get('subject') ?? '';
@@ -50,66 +50,74 @@ export default function Contact() {
   };
 
   return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div>
+        <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2">
+          Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
+          placeholder="Your name"
+        />
+      </div>
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
+          placeholder="your@email.com"
+        />
+      </div>
+      <div>
+        <label htmlFor="subject" className="block text-sm font-medium text-text-secondary mb-2">
+          Subject
+        </label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
+          placeholder="Project inquiry, collaboration, etc."
+          defaultValue={defaultSubject}
+        />
+      </div>
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2">
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows={6}
+          className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors resize-none"
+          placeholder="Tell me about your project..."
+        />
+      </div>
+      <Button type="submit" className="w-full" disabled={isSubmitting}>
+        {isSubmitting ? 'Sending...' : 'Send Message'}
+      </Button>
+    </form>
+  );
+}
+
+export default function Contact() {
+  return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="container mx-auto px-6 max-w-4xl">
         <Section eyebrow="Get in touch" title="Let's build something together">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
-                    placeholder="your@email.com"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-text-secondary mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
-                    placeholder="Project inquiry, collaboration, etc."
-                    defaultValue={defaultSubject}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors resize-none"
-                    placeholder="Tell me about your project..."
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </Button>
-              </form>
+              <Suspense fallback={<div className="h-10" />}> 
+                <ContactForm />
+              </Suspense>
             </div>
 
             {/* Direct Contact */}
