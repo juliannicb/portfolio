@@ -1,118 +1,8 @@
 'use client';
-
-import { Suspense, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { Section } from '@/components/ui/section';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Mail, Github, Linkedin, Clock } from 'lucide-react';
-import { toast } from 'react-hot-toast';
-
-function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const searchParams = useSearchParams();
-  const defaultSubject = searchParams.get('subject') ?? '';
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      subject: formData.get('subject') as string,
-      message: formData.get('message') as string,
-    };
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        toast.success(result.message);
-        e.currentTarget.reset();
-      } else {
-        toast.error(result.error || 'Something went wrong');
-      }
-    } catch (error) {
-      toast.error('Failed to send message. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
-          placeholder="Your name"
-          required
-          minLength={2}
-        />
-      </div>
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
-          placeholder="your@email.com"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-text-secondary mb-2">
-          Subject
-        </label>
-        <input
-          type="text"
-          id="subject"
-          name="subject"
-          className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
-          placeholder="Project inquiry, collaboration, etc."
-          defaultValue={defaultSubject}
-          required
-          minLength={5}
-        />
-      </div>
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={6}
-          className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors resize-none"
-          placeholder="Tell me about your project..."
-          required
-          minLength={10}
-        />
-      </div>
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? 'Sending...' : 'Send Message'}
-      </Button>
-    </form>
-  );
-}
 
 export default function Contact() {
   return (
@@ -122,9 +12,18 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <Suspense fallback={<div className="h-10" />}> 
-                <ContactForm />
-              </Suspense>
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold">Project Inquiry</h3>
+                <p className="mt-2 text-sm text-text-secondary">Use the external form to share your project details.</p>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSc_Q_ySGH5m-b1eDvDE63l8QhamLTRZKUBmacY78BJ1xHxV6Q/viewform?usp=sharing&ouid=107973645994622748887"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-4"
+                >
+                  <Button>Inquire</Button>
+                </a>
+              </Card>
             </div>
 
             {/* Direct Contact */}
