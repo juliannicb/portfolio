@@ -20,6 +20,33 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Contact Form Email Delivery
+
+The contact form posts to `/api/contact` and sends an email via Resend to `jngbrandalise@live.com`.
+
+### Setup
+
+1. Create a Resend account and obtain an API key.
+2. Add the following to your environment (e.g., `.env.local`) and in your Vercel project Settings → Environment Variables (for Preview and Production):
+
+```
+RESEND_API_KEY=re_XXXXXXXXXXXXXXXXXXXXXXXX
+CONTACT_TO_EMAIL=jngbrandalise@live.com
+CONTACT_FROM_EMAIL="Portfolio Contact <onboarding@resend.dev>"
+```
+
+3. Restart the dev server.
+
+With the API key set, submissions will be delivered from `onboarding@resend.dev` (or your verified domain) to your inbox. In production, you may prefer setting `CONTACT_FROM_EMAIL` to a sender on a verified domain in Resend.
+
+### Notes
+
+- Validation is enforced (name, email, subject, message).
+- Basic rate limiting is applied (5 requests / 15 minutes per IP).
+- On failure (missing API key or send error), the API returns an error status.
+- The contact API route explicitly runs on the Node.js runtime for compatibility with the Resend SDK.
+- Check Vercel → Deployments → Functions logs for `POST /api/contact` to debug production errors.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

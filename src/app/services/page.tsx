@@ -119,7 +119,7 @@ export default function Services() {
             {/* D. Hyperledger Fabric / Enterprise Blockchain */}
             <div>
               <h2 className="text-2xl font-bold mb-4">D. Hyperledger Fabric / Enterprise Blockchain</h2>
-              <p className="text-sm text-muted">This is a premium corporate service. You have a unique advantage here.</p>
+              
               <Card className="p-6 mt-4">
                 <h3 className="text-xl font-semibold">5. Enterprise PoC / Fabric Network</h3>
                 <div className="mt-3">
@@ -147,7 +147,7 @@ export default function Services() {
               <div className="space-y-6">
                 <Card className="p-6">
                   <h3 className="text-xl font-semibold">6. Paid Consulting Call</h3>
-                  <p className="mt-2 text-sm text-muted">This filters out non-serious clients.</p>
+                  
                   <div className="mt-3">
                     <h4 className="font-medium">Deliverables</h4>
                     <ul className="mt-2 list-disc pl-5 space-y-1 text-sm">
@@ -186,4 +186,3 @@ export default function Services() {
     </div>
   );
 }
-

@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
 
+// Ensure Node.js runtime for compatibility with Resend SDK
+export const runtime = 'nodejs';
+
 // Validation schema
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
@@ -61,7 +64,8 @@ export async function POST(request: NextRequest) {
     }
 
     const resend = new Resend(RESEND_API_KEY);
-    const toAddress = 'jngbrandalise@live.com';
+    const toAddress = process.env.CONTACT_TO_EMAIL || 'jngbrandalise@live.com';
+    const fromAddress = process.env.CONTACT_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>';
 
     const subject = `New contact: ${validatedData.subject}`;
     const html = `
@@ -78,8 +82,8 @@ export async function POST(request: NextRequest) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: [toAddress],
+      from: fromAddress,
+      to: toAddress,
       subject,
       html,
       replyTo: validatedData.email,
@@ -88,7 +92,14 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error('Resend email error:', error);
       return NextResponse.json(
-        { error: 'Failed to send email. Please try again later.' },
+        {
+          error: 'Failed to send email. Please try again later.',
+          details: typeof error === 'object' && error !== null ? {
+            name: (error as any).name,
+            message: (error as any).message,
+            statusCode: (error as any).statusCode,
+          } : undefined
+        },
         { status: 502 }
       );
     }
