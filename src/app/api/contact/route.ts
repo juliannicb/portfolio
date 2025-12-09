@@ -70,8 +70,10 @@ export async function POST(request: NextRequest) {
     }
 
     const resend = new Resend(RESEND_API_KEY);
-    const toAddress = process.env.CONTACT_TO_EMAIL || 'jngbrandalise@live.com';
-    const fromAddress = process.env.CONTACT_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>';
+    const toAddress = (process.env.CONTACT_TO_EMAIL || 'jngbrandalise@live.com').trim();
+    const rawFrom = (process.env.CONTACT_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>').trim();
+    // Strip wrapping quotes if the value was entered as "Display <email>"
+    const fromAddress = rawFrom.replace(/^"(.*)"$/, '$1');
 
     const subject = `New contact: ${validatedData.subject}`;
     const html = `
