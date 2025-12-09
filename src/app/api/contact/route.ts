@@ -49,9 +49,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse and validate request body
+    // Parse and validate request body (trim inputs to avoid false failures)
     const body = await request.json();
-    const validatedData = contactSchema.parse(body);
+    const sanitized = {
+      name: (body?.name ?? '').toString().trim(),
+      email: (body?.email ?? '').toString().trim(),
+      subject: (body?.subject ?? '').toString().trim(),
+      message: (body?.message ?? '').toString().trim(),
+    };
+    const validatedData = contactSchema.parse(sanitized);
 
     // Attempt to send email via Resend
     const RESEND_API_KEY = process.env.RESEND_API_KEY;

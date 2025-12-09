@@ -61,6 +61,8 @@ function ContactForm() {
           name="name"
           className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
           placeholder="Your name"
+          required
+          minLength={2}
         />
       </div>
       <div>
@@ -73,6 +75,7 @@ function ContactForm() {
           name="email"
           className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
           placeholder="your@email.com"
+          required
         />
       </div>
       <div>
@@ -86,6 +89,8 @@ function ContactForm() {
           className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors"
           placeholder="Project inquiry, collaboration, etc."
           defaultValue={defaultSubject}
+          required
+          minLength={5}
         />
       </div>
       <div>
@@ -98,6 +103,8 @@ function ContactForm() {
           rows={6}
           className="w-full px-4 py-3 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-colors resize-none"
           placeholder="Tell me about your project..."
+          required
+          minLength={10}
         />
       </div>
       <Button type="submit" className="w-full" disabled={isSubmitting}>
