@@ -1,0 +1,47 @@
+---
+title: "LLM Support Ticket Triage Service"
+slug: "llm-support-ticket-triage-service"
+date: "2025-01-05"
+tags: ["AI", "Backend", "Automation"]
+summary: "A production-ready Node.js/TypeScript service that leverages LLMs to automatically categorize, prioritize, and flag support tickets."
+repo: "https://github.com/juliannicb/LLM-Support-Ticket-Triage-Service"
+stack: ["Node.js", "TypeScript", "OpenAI", "Express"]
+---
+
+## Description
+
+A production-ready Node.js/TypeScript service that leverages LLMs (OpenAI GPT-4o-mini) to automatically categorize, prioritize, and flag support tickets. Designed with clean architecture, multi-provider fallback, and accurate token cost tracking.
+
+### Architecture & Features
+
+This service is built on Express and TypeScript using a clean, layered architecture:
+- **Multi-Provider Support**: Uses LLMProvider abstraction. Defaults to OpenAI but automatically falls back to Gemini if the primary fails.
+- **Cost Tracking**: Real-time calculation of USD costs based on token usage.
+- **Validation**: Zod schemas ensure strictly typed inputs and outputs.
+- **Resilience**: Comprehensive error handling for network issues, API limits, and invalid inputs.
+
+### Quick Start
+
+1. **Setup**
+   ```bash
+   # Install dependencies
+   npm install
+   # Configure environment
+   cp .env.example .env
+   ```
+
+2. **Configure API Key**
+   Add your OpenAI API key to `.env`:
+   ```env
+   OPENAI_API_KEY=sk-...
+   ```
+
+3. **Run**
+   ```bash
+   # Development
+   npm run dev
+   # Production
+   npm run build && npm start
+   ```
+
+Server runs on http://localhost:3000.

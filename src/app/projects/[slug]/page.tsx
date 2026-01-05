@@ -16,10 +16,15 @@ export function generateStaticParams() {
 export default function ProjectCaseStudy({ params }: Props) {
   const { slug } = use(params);
   const meta = getAllProjects().find((p) => p.slug === slug);
-  
+
   if (!meta) return notFound();
 
-  const ctaHref = meta.demo && meta.demo.length > 0 ? meta.demo : `/projects/${slug}`;
+  const ctaHref =
+    meta.demo && meta.demo.length > 0
+      ? meta.demo
+      : meta.repo && meta.repo.length > 0
+        ? meta.repo
+        : `/projects/${slug}`;
 
   return (
     <article className="prose prose-invert max-w-3xl">
@@ -152,13 +157,18 @@ export default function ProjectCaseStudy({ params }: Props) {
           <>
             <p className="text-lg">{meta.summary}</p>
             <p>Experience {meta.title} end‑to‑end — built to be fast, transparent, and delightful to use.</p>
+            {meta.stack && (
+              <p className="mt-4 text-sm text-muted">
+                <span className="font-semibold">Stack:</span> {meta.stack.join(", ")}
+              </p>
+            )}
             <a
               href={ctaHref}
-              target={meta.demo ? "_blank" : undefined}
-              rel={meta.demo ? "noopener noreferrer" : undefined}
+              target={meta.demo || meta.repo ? "_blank" : undefined}
+              rel={meta.demo || meta.repo ? "noopener noreferrer" : undefined}
               className="inline-block mt-4 px-4 py-2 rounded bg-accent-teal text-black hover:opacity-90"
             >
-              {meta.demo ? "Visit Project" : "View Details"}
+              {meta.demo ? "Visit Project" : meta.repo ? "View on GitHub" : "View Details"}
             </a>
           </>
         )}

@@ -1,0 +1,35 @@
+---
+title: "BiniWorld DPP (Digital Product Passport)"
+slug: "biniworld-dpp"
+date: "2025-01-05"
+tags: ["Blockchain", "Supply Chain", "Hyperledger Fabric"]
+summary: "A blockchain-based Digital Product Passport system built on Hyperledger Fabric. This project allows for the creation, tracking, and verification of product batches across a distributed ledger."
+repo: ""
+stack: ["Hyperledger Fabric", "Go", "Node.js", "Express", "React", "Vite", "Docker"]
+---
+
+## Description
+
+A blockchain-based Digital Product Passport system built on Hyperledger Fabric. This project allows for the creation, tracking, and verification of product batches across a distributed ledger, ensuring transparency and immutability for textile and other industries.
+
+### Project Structure
+
+The project is divided into three main components:
+
+- **DPP-backend/**: Contains the Hyperledger Fabric network configuration (Docker Compose, ConfigTX, CryptoConfig), Chaincode (Smart Contract) written in Go, and scripts for network lifecycle management.
+- **Web-backend/**: A Node.js Express server acting as the middleware/API layer. Connects to the Fabric network using the fabric-network SDK and manages user authentication and wallets.
+- **DPP-frontend/**: A React (Vite) application providing the user interface for companies to upload batches and users to view Digital Product Passports.
+
+### Features
+
+- **Start the Hyperledger Fabric Network**: Initialize the blockchain network, generate certificates, and deploy the smart contract.
+- **Backend API**: Serves as the gateway to the blockchain, handling transactions and queries.
+- **Frontend Dashboard**: Allows users to create batches, submit forms to the blockchain, and view immutable records.
+- **Monitoring & Verification**: Verify data replication across the distributed ledger via CouchDB interfaces.
+
+### Network Topology
+
+- **2 Organizations**: Org1, Org2
+- **4 Peers**: Peer0/Peer1 for Org1, Peer0/Peer1 for Org2
+- **1 Orderer**: Raft consensus
+- **State Database**: CouchDB (enabled for rich queries)

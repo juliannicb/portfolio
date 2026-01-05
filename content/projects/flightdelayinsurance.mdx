@@ -1,0 +1,25 @@
+---
+title: "Flight Delay Insurance"
+slug: "flight-delay-insurance"
+date: "2025-01-05"
+tags: ["Insurance", "Smart Contracts", "Ethereum"]
+summary: "The first decentralized Flight Delay insurance on the Ethereum Blockchain."
+repo: "https://github.com/juliannicb/flightDelayInsurance"
+stack: ["Ethereum", "Solidity", "Oracle"]
+---
+
+## Description
+
+This is the home of the **FlightDelay Contract**. The contract manages the operation of an insurance-like business process, allowing users to apply for policies, and an oracle for underwriting and payout in case of claims.
+
+The usecase is the insurance of flight delays. Users can select any flight and apply for an insurance policy in case the flight is late. They pay a fair premium and automagically get a payout as soon as the plane has landed (except in the case of a punctal arrival, of course nothing is paid then).
+
+### The Contracts
+The contract has been kept as simple as possible, to make it as safe as possible. Actually, it's not a single contract, but a suite of seven contracts which interact closely together:
+- FlightDelayNewPolicy
+- FlightDelayUnderwrite
+- FlightDelayPayout
+- FlightDelayDatabase
+- FlightDelayLedger
+- FlightDelayAccessControl
+- FlightDelayController
